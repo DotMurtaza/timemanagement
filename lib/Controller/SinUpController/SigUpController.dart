@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:timemanagment/Controller/user_controller.dart';
 import 'package:timemanagment/Models/user_model.dart';
 import 'package:timemanagment/Services/mydb.dart';
+import 'package:timemanagment/Views/LoginScreen/LoginScreen.dart';
 
 class SignUpController extends GetxController {
   TextEditingController username = TextEditingController();
@@ -60,6 +61,7 @@ class SignUpController extends GetxController {
     } else {
       signUp(emailSignUp.text, passwordSignUp.text, username.text,
           phoneSignUp.text);
+    Get.back();
     }
     _formkey.currentState.save;
   }
@@ -74,10 +76,12 @@ class SignUpController extends GetxController {
           email: email,
           password: password,
           phoneNo: phoneNo);
+
       if (await MyDatabase().createUser(userModel)) {
         Get.find<UserController>().user = userModel;
-        Get.back();
+
       };
+      Get.back();
       Get.snackbar('Success', 'Account created Successfully');
     } catch (e) {
       Get.snackbar('Erorr', e.message.toString());

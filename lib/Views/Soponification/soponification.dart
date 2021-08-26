@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:timemanagment/Controller/CirculationController/circulation_controller.dart';
+import 'package:timemanagment/Controller/CommonController/common_controller.dart';
 import 'package:timemanagment/Controller/SoponificationController/sponification_controller.dart';
 import 'package:timemanagment/Models/LogSheetModel.dart';
-import 'package:timemanagment/Views/SeeAllDetail/all_detail.dart';
 import 'package:timemanagment/constans/Colors.dart';
 
 class Soponification extends StatelessWidget {
@@ -22,10 +21,10 @@ class Soponification extends StatelessWidget {
         .difference(sponificationController.startingDate)
         .inMinutes;
 
-    String stdTime = 'Std. Time : 180 min ';
-    String actTime = 'Act. Time : $difference min ';
-    final  sopeController = Get.put(SponifactionController());
-    final  cicleController = Get.put(CirculationController());
+    String stdTime = '180';
+    int diff =difference;
+    final sopeController = Get.put(SponifactionController());
+    final commoncicleController = Get.put(CommonController());
 
     return Scaffold(
       appBar: AppBar(
@@ -78,7 +77,7 @@ class Soponification extends StatelessWidget {
                   child: Card(
                     elevation: 10,
                     child: Form(
-                    //  key: _key,
+                      //  key: _key,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -131,7 +130,7 @@ class Soponification extends StatelessWidget {
                               decoration: BoxDecoration(border: Border.all()),
                               child: Center(
                                   child: Text(
-                                stdTime,
+                                'Std Time : $stdTime min',
                                 style: TextStyle(fontSize: 18),
                               )),
                             ),
@@ -142,7 +141,7 @@ class Soponification extends StatelessWidget {
                                   child: difference == null
                                       ? Text('Loading...')
                                       : Text(
-                                          actTime,
+                                          'Act. Time : $diff min',
                                           style: TextStyle(fontSize: 18),
                                         )),
                             ),
@@ -192,17 +191,17 @@ class Soponification extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       onPressed: () {
-                        sponificationController.sponificationData(
-                            sponificationController.startTimeController.text,
-                            sponificationController.endTimeController.text,
+                        commoncicleController.updateSponification(
+                            sopeController.startTimeController.text,
+                            sopeController.endTimeController.text,
                             stdTime,
-                            actTime,
+                            diff,
+                            sopeController.downTimeController.text);
 
-                            id,
-                          sponificationController.downTimeController.text,);
                         sponificationController.downTimeController.clear();
                         sponificationController.startTimeController.clear();
                         sponificationController.endTimeController.clear();
+                        Get.back();
                       },
                       child: Text(
                         'Save',
@@ -212,28 +211,10 @@ class Soponification extends StatelessWidget {
                       color: CustomColors.myBlue,
                     ),
                   )),
-              Positioned(
-                  right: 10,
-                  top: 0,
-                  child: MaterialButton(
-                    onPressed: () {
-                    sopeController.getSopeSteam(id);
-                    cicleController.getCiculationStream(id);
-                      Get.to(AllDetail());
-                    },
-                    child: Text(
-                      'see all record',
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.redAccent,
-                          fontSize: 18),
-                    ),
-                  ))
             ],
           ),
         ),
       ),
-
     );
   }
 }

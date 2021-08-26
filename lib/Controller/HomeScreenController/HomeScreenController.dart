@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:timemanagment/Models/LogSheetModel.dart';
-import 'package:timemanagment/Views/CategoryScreen/categoryScreen.dart';
-import 'package:timemanagment/Views/LogSheetDetailConfirm/confirm_logsheet.dart';
 import 'package:timemanagment/constans/Colors.dart';
 
 import '../user_controller.dart';
@@ -200,7 +198,7 @@ class HomeScreenController extends GetxController {
           operatorController.text,
           sampleController.text);
       print('Date is : $_selectedDate');
-      Get.to(ConfirmLogSheet());
+
       //clearController();
 
     } else {

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class LogSheetModel {
   String id;
-  String date;
+  Timestamp date;
   String shift;
   String base;
   String boilNo;
@@ -14,7 +14,8 @@ class LogSheetModel {
   String sampleNo;
 
   LogSheetModel(
-      {this.id,
+      {
+        this.id,
         this.date,
       this.shift,
       this.base,
@@ -24,7 +25,8 @@ class LogSheetModel {
       this.fatChange,
       this.operator,
       this.panlNo,
-      this.sampleNo});
+      this.sampleNo
+      });
   LogSheetModel.fromDocumentSnapShot(DocumentSnapshot snapshot){
     id=snapshot.id;
     print('Model id : ${snapshot.id}');

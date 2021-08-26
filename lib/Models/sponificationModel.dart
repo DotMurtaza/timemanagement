@@ -10,7 +10,8 @@ class SponificationModel {
   Timestamp sentAt;
 
   SponificationModel(
-      {this.id,
+      {
+        this.id,
       this.endTime,
       this.startTime,
       this.stdTime,
@@ -28,7 +29,7 @@ class SponificationModel {
     startTime = snapshot.data()['startTime'] ?? "";
     stdTime = snapshot.data()['stdTime'] ?? "";
     actTime = snapshot.data()['actTime'] ?? "";
-    downTimeloss = snapshot.data()['downTimeloss'] ?? "";
+    downTimeloss = snapshot.data()['downTimeLoss'] ?? "";
     sentAt = snapshot.data()['sentAt'] ?? "";
   }
 }

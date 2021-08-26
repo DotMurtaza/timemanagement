@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:timemanagment/Controller/CirculationController/circulation_controller.dart';
-import 'package:timemanagment/Controller/SoponificationController/sponification_controller.dart';
+import 'package:timemanagment/Controller/CommonController/common_controller.dart';
 import 'package:timemanagment/Models/LogSheetModel.dart';
-import 'package:timemanagment/Models/sponificationModel.dart';
-import 'package:timemanagment/Views/SeeAllDetail/all_detail.dart';
+import 'package:timemanagment/Views/SelectSheetToView/slect_sheet_to_view.dart';
 import 'package:timemanagment/constans/Colors.dart';
 
 class CirculationScreen extends StatelessWidget {
-   CirculationScreen({Key key, this.logSheetModel, this.id})
-      : super(key: key);
+  CirculationScreen({Key key, this.logSheetModel, this.id}) : super(key: key);
   final LogSheetModel logSheetModel;
   final String id;
   final cicleController = Get.put(CirculationController());
-  final sopeController = Get.put(SponifactionController());
+  final commonController = Get.put(CommonController());
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final circulationController = Get.put(CirculationController());
-    print(circulationController.startingDate);
-    print(circulationController.endingDate);
-    final difference = circulationController.endingDate
-        .difference(circulationController.startingDate)
+    print(cicleController.startingDate);
+    print(cicleController.endingDate);
+    final difference = cicleController.endingDate
+        .difference(cicleController.startingDate)
         .inMinutes;
-    String stdTime = 'Std. Time : 90 min ';
-    String actTime = 'Act. Time : $difference min ';
+    String stdTime = '90';
+    int actTime = difference;
+    //var check=difference>=90?'below':"above";
+
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -87,10 +85,10 @@ class CirculationScreen extends StatelessWidget {
                                 child: TextFormField(
 
                                     // focusNode: AlwaysDisabledFocusNode(),
-                                    controller: circulationController
-                                        .startTimeController,
+                                    controller:
+                                        cicleController.startTimeController,
                                     onTap: () {
-                                      circulationController.startTime(context);
+                                      cicleController.startTime(context);
                                     },
                                     decoration: InputDecoration(
                                       labelText: 'Start Time:',
@@ -108,9 +106,9 @@ class CirculationScreen extends StatelessWidget {
 
                                     // focusNode: AlwaysDisabledFocusNode(),
                                     controller:
-                                        circulationController.endTimeController,
+                                        cicleController.endTimeController,
                                     onTap: () {
-                                      circulationController.endTime(context);
+                                      cicleController.endTime(context);
                                     },
                                     decoration: InputDecoration(
                                       labelText: 'End Time:',
@@ -127,7 +125,7 @@ class CirculationScreen extends StatelessWidget {
                             decoration: BoxDecoration(border: Border.all()),
                             child: Center(
                                 child: Text(
-                              stdTime,
+                              'Std. time : $stdTime min',
                               style: TextStyle(fontSize: 18),
                             )),
                           ),
@@ -138,7 +136,7 @@ class CirculationScreen extends StatelessWidget {
                                 child: difference == null
                                     ? Text('Loading...')
                                     : Text(
-                                        actTime,
+                                        'Diffrence Time is : ${actTime} min',
                                         style: TextStyle(fontSize: 18),
                                       )),
                           ),
@@ -154,8 +152,7 @@ class CirculationScreen extends StatelessWidget {
                             height: 5,
                           ),
                           TextFormField(
-                            controller:
-                                circulationController.downTimeController,
+                            controller: cicleController.downTimeController,
                             keyboardType: TextInputType.multiline,
                             maxLines: 5,
                             decoration:
@@ -187,17 +184,16 @@ class CirculationScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       onPressed: () {
-                        circulationController.sponificationData(
-                          circulationController.startTimeController.text,
-                          circulationController.endTimeController.text,
-                          stdTime,
-                          actTime,
-                          id,
-                          circulationController.downTimeController.text,
-                        );
-                        circulationController.downTimeController.clear();
-                        circulationController.startTimeController.clear();
-                        circulationController.endTimeController.clear();
+                        commonController.updateCirculation(
+                            cicleController.startTimeController.text,
+                            cicleController.endTimeController.text,
+                            stdTime,
+                            actTime,
+                            cicleController.downTimeController.text);
+                        cicleController.downTimeController.clear();
+                        cicleController.startTimeController.clear();
+                        cicleController.endTimeController.clear();
+                        Get.back();
                       },
                       child: Text(
                         'Save',
@@ -207,24 +203,23 @@ class CirculationScreen extends StatelessWidget {
                       color: CustomColors.myBlue,
                     ),
                   )),
-              Positioned(
-                  right: 10,
-                  top: 0,
-                  child: MaterialButton(
-                    onPressed: () {
-                      cicleController.getCiculationStream(id);
-                      sopeController.getSopeSteam(id);
-                      Get.to(AllDetail());
-                    },
-                    child: Text(
-                      'see all record',
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.redAccent,
-                          fontSize: 18),
-                    ),
-                  ))
-
+              // Positioned(
+              //     right: 10,
+              //     top: 0,
+              //     child: MaterialButton(
+              //       onPressed: () {
+              //         cicleController.getCiculationStream(id);
+              //         sopeController.getSopeSteam(id);
+              //         Get.to(AllDetail());
+              //       },
+              //       child: Text(
+              //         'see all record',
+              //         style: TextStyle(
+              //             decoration: TextDecoration.underline,
+              //             color: Colors.redAccent,
+              //             fontSize: 18),
+              //       ),
+              //     ))
             ],
           ),
         ),

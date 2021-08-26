@@ -53,23 +53,17 @@ class SponifactionController extends GetxController {
       print(pickedTime.format(context)); //output 10:51 PM
       DateTime parsedTime =
           DateFormat.jm().parse(pickedTime.format(context).toString());
-      //converting to DateTime so that we can further format on different pattern.
-      print(parsedTime); //output 1970-01-01 22:53:00.000
+
       formattedTime = parsedTime;
       print(formattedTime); //output 14:59:00
-      //DateFormat() is from intl package, you can format the time on any pattern you need.
       endingDate = formattedTime;
       endTimeController.text = DateFormat('kk:mm:a').format(formattedTime);
-
-      // endingDate=formattedTime as DateTime;
     } else {
       print("Time is not selected");
     }
   }
 
   Future<void> sponificationData(
-      // String id,
-
       String startTime,
       String endTime,
       String standardTime,
@@ -82,7 +76,6 @@ class SponifactionController extends GetxController {
           .doc(uid)
           .collection('sponification')
           .add({
-        // 'id': id,
         'sentAt': Timestamp.now(),
         'startTime': startTime,
         'endTime': endTime,
@@ -97,9 +90,7 @@ class SponifactionController extends GetxController {
     }
   }
 
-
-  void getSopeSteam( String uid) {
-
+  void getSopeSteam(String uid) {
     sponificationList.bindStream(sopeStream(uid));
   }
 
