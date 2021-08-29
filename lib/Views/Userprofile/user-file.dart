@@ -49,7 +49,7 @@ class Userprofile extends GetWidget<AuthController> {
             children: [
             GetX<UserController>(builder: (_){
               return Text(
-                'User name : ${_.user.name}',
+                'User name : ${_.user.id}',
                 style: TextStyle(color: CustomColors.myBlue, fontSize: 25),
               );
             },),

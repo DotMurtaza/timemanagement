@@ -219,11 +219,11 @@ class HomeScreenController extends GetxController {
             data: ThemeData.dark().copyWith(
               colorScheme: ColorScheme.dark(
                 primary: Colors.black,
-                onPrimary: Colors.white,
+                onPrimary: Colors.blueAccent,
                 surface: CustomColors.myBlue,
-                onSurface: Colors.white,
+                onSurface: Colors.black,
               ),
-              dialogBackgroundColor: Colors.blue[400],
+              dialogBackgroundColor: Colors.white,
             ),
             child: child,
           );

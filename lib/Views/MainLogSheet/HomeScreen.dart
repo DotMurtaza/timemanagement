@@ -41,14 +41,9 @@ class HomeScreen extends StatelessWidget {
                 Get.to(Userprofile());
               },
             ),
+
             ListTile(
-              title: const Text('Statistics'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
+              leading: Icon(Icons.logout),
               title: const Text('LogOut'),
               onTap: () {
                 logoutController.signOut();
@@ -81,10 +76,11 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Card(
+                          elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 8),
                             child: TextFormField(
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 18),
                               focusNode: AlwaysDisabledFocusNode(),
                               controller: homeController.dateController,
                               validator: (value) {
@@ -96,13 +92,13 @@ class HomeScreen extends StatelessWidget {
                               decoration: InputDecoration(
                                   prefix: Padding(
                                     padding: const EdgeInsets.only(
-                                        right: 10, top: 2),
+                                        right: 2, top: 0),
                                     child: Icon(Icons.calendar_today_rounded),
                                   ),
                                   labelText: 'Date :',
                                   labelStyle: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 22,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                   border: UnderlineInputBorder()),
                             ),
@@ -111,9 +107,9 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 6, left: 10),
+                            padding: const EdgeInsets.only(top: 2, left: 10),
                             child: Column(
                               children: [
                                 Align(
@@ -132,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                                           style: TextStyle(color: Colors.black),
                                         ),
                                   isExpanded: true,
-                                  iconSize: 30.0,
+                                  iconSize: 20.0,
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 18),
                                   items: ['1st', '2nd', '3rd'].map(
@@ -157,7 +153,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(
@@ -179,7 +175,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(
@@ -201,7 +197,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(
@@ -223,7 +219,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(
@@ -245,7 +241,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(
@@ -271,7 +267,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(
@@ -297,7 +293,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(
@@ -319,7 +315,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        Card(
+                        Card(elevation:5,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: TextFormField(

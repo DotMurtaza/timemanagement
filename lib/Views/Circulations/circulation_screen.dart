@@ -21,7 +21,7 @@ class CirculationScreen extends StatelessWidget {
     final difference = cicleController.endingDate
         .difference(cicleController.startingDate)
         .inMinutes;
-    String stdTime = '90';
+    String stdTime1 = '90';
     int actTime = difference;
     //var check=difference>=90?'below':"above";
 
@@ -125,7 +125,7 @@ class CirculationScreen extends StatelessWidget {
                             decoration: BoxDecoration(border: Border.all()),
                             child: Center(
                                 child: Text(
-                              'Std. time : $stdTime min',
+                              'Std. time : $stdTime1 min',
                               style: TextStyle(fontSize: 18),
                             )),
                           ),
@@ -187,7 +187,7 @@ class CirculationScreen extends StatelessWidget {
                         commonController.updateCirculation(
                             cicleController.startTimeController.text,
                             cicleController.endTimeController.text,
-                            stdTime,
+                            stdTime1,
                             actTime,
                             cicleController.downTimeController.text);
                         cicleController.downTimeController.clear();

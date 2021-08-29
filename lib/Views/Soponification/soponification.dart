@@ -21,7 +21,7 @@ class Soponification extends StatelessWidget {
         .difference(sponificationController.startingDate)
         .inMinutes;
 
-    String stdTime = '180';
+    String stdTime1 = '180';
     int diff =difference;
     final sopeController = Get.put(SponifactionController());
     final commoncicleController = Get.put(CommonController());
@@ -130,7 +130,7 @@ class Soponification extends StatelessWidget {
                               decoration: BoxDecoration(border: Border.all()),
                               child: Center(
                                   child: Text(
-                                'Std Time : $stdTime min',
+                                'Std Time : $stdTime1 min',
                                 style: TextStyle(fontSize: 18),
                               )),
                             ),
@@ -194,7 +194,7 @@ class Soponification extends StatelessWidget {
                         commoncicleController.updateSponification(
                             sopeController.startTimeController.text,
                             sopeController.endTimeController.text,
-                            stdTime,
+                            stdTime1,
                             diff,
                             sopeController.downTimeController.text);
 

@@ -74,7 +74,7 @@ class CommonController extends GetxController {
         docId = value.id.obs;
         clearField();
         Get.to(CatergoryScreen());
-        clearField();
+        //clearField();
 
         print(value.id);
       });

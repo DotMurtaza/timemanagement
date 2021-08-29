@@ -6,7 +6,7 @@ class UserController extends GetxController{
   Rx<UserModel> usermodel=UserModel().obs;
   UserModel get user=>usermodel.value;
   set user(UserModel value)=>this.usermodel.value=value;
-  void clear(){
-    usermodel.value=UserModel();
-  }
+  // void clear(){
+  //   usermodel.value=UserModel();
+  // }
 }

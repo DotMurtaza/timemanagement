@@ -66,10 +66,10 @@ class SingleCard extends StatelessWidget {
                       style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
                     ),
                     SizedBox(
-                      width: 130,
+                      width: 120,
                     ),
                     Text(
-                      '${180-commonModel.actTimeSoap}',
+                      '${commonModel.actTimeSoap!=0?180-commonModel.actTimeSoap:commonModel.actTimeCir}',
                       style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
                     ),
                   ],
@@ -83,17 +83,22 @@ class SingleCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      'CirTime Diff',
-                      style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
-                    ),
-                    SizedBox(
-                      width: 130,
-                    ),
-                    Text(
-                      '${90-commonModel.actTimeCir}',
-                      style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
-                    ),
+                   Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
+                     Text(
+                       'CirTime Diff',
+                       style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+                     ),
+                   ],),
+                   SizedBox(width: 120,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${commonModel.actTimeCir!=0?90-commonModel.actTimeCir:commonModel.actTimeCir}',
+                          style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -121,18 +126,29 @@ class SingleCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            name,
-            style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
-          ),
-          SizedBox(
-            width: 180,
-          ),
-          Text(
-            data,
-            style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
-          ),
+         Column(crossAxisAlignment: CrossAxisAlignment.start,
+           children: [
+             Text(
+               name,
+               style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+             ),
+             SizedBox(
+               width: 200,
+             ),
+
+           ],
+         ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                data,
+                style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+              ),
+            ],
+          )
         ],
       ),
     );

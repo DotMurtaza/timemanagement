@@ -74,8 +74,8 @@ class _DetailsInTabelState extends State<DetailsInTabel> {
           user.base,
           user.operator,
           user.sampleNo,
-          180-user.actTimeSoap,
-          90-user.actTimeCir,
+          user.actTimeSoap!=0?180-user.actTimeSoap:user.actTimeSoap,
+          user.actTimeCir!=0?90-user.actTimeCir:user.actTimeCir,
 
         ];
 
