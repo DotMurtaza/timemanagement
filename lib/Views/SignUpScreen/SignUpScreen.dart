@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:timemanagment/Controller/SinUpController/SigUpController.dart';
 import 'package:timemanagment/Views/LoginScreen/LoginScreen.dart';
+import 'package:timemanagment/Views/SignUpScreen/widget/user-image-picker.dart';
 import 'package:timemanagment/constans/Colors.dart';
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key key}) : super(key: key);
@@ -12,6 +15,9 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
     final validateController=Get.put(SignUpController());
+    void _pickedImage(File image){
+      validateController.userImage=image;
+    }
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       body: Center(
@@ -27,10 +33,14 @@ class SignUpScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                              height: 200,
-                              width: 300,
-                              child: SvgPicture.asset('assets/images/uniii.svg')),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                                height: 50,
+                                width: 70,
+                                child: SvgPicture.asset('assets/images/uniii.svg')),
+                          ),
+                     UserImagePicker(imagePickedFn:_pickedImage ,),
                           Card(
                             elevation: 3,
                             child: Padding(

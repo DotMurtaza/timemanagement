@@ -13,8 +13,13 @@ class SingleCard extends StatelessWidget {
         commonModel.date.microsecondsSinceEpoch);
     var formatedDate = DateFormat.yMMMd().format(dt);
     print('date is${DateFormat.yMMMd().format(dt)}');
+    var soapDiff = commonModel.actTimeSoap != 0
+        ? 180 - commonModel.actTimeSoap
+        : commonModel.actTimeCir;
+
 
     return Card(
+
       elevation: 10,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
@@ -31,9 +36,9 @@ class SingleCard extends StatelessWidget {
                     color: CustomColors.myBlue.withOpacity(0.7)),
                 child: Center(
                     child: Text(
-                  'Date : $formatedDate',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                )),
+                      'Date : $formatedDate',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    )),
               ),
               _singleitem('Shift', commonModel.shift),
               SizedBox(
@@ -63,14 +68,16 @@ class SingleCard extends StatelessWidget {
                   children: [
                     Text(
                       'SapTime Diff',
-                      style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+                      style: TextStyle(
+                          color: CustomColors.myBlue, fontSize: 19),
                     ),
                     SizedBox(
                       width: 120,
                     ),
                     Text(
-                      '${commonModel.actTimeSoap!=0?180-commonModel.actTimeSoap:commonModel.actTimeCir}',
-                      style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+                      '${soapDiff}',
+                      style: TextStyle(
+                          color: CustomColors.myBlue, fontSize: 19),
                     ),
                   ],
                 ),
@@ -83,19 +90,23 @@ class SingleCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                   Column(crossAxisAlignment: CrossAxisAlignment.start,children: [
-                     Text(
-                       'CirTime Diff',
-                       style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
-                     ),
-                   ],),
-                   SizedBox(width: 120,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(
+                        'CirTime Diff',
+                        style: TextStyle(color: CustomColors.myBlue,
+                            fontSize: 19),
+                      ),
+                    ],),
+                    SizedBox(width: 120,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${commonModel.actTimeCir!=0?90-commonModel.actTimeCir:commonModel.actTimeCir}',
-                          style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+                          '${commonModel.actTimeCir != 0 ? 90 -
+                              commonModel.actTimeCir : commonModel.actTimeCir}',
+                          style: TextStyle(color: CustomColors.myBlue,
+                              fontSize: 19),
                         ),
                       ],
                     )
@@ -128,18 +139,18 @@ class SingleCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         Column(crossAxisAlignment: CrossAxisAlignment.start,
-           children: [
-             Text(
-               name,
-               style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
-             ),
-             SizedBox(
-               width: 200,
-             ),
+          Column(crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: TextStyle(color: CustomColors.myBlue, fontSize: 19),
+              ),
+              SizedBox(
+                width: 200,
+              ),
 
-           ],
-         ),
+            ],
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

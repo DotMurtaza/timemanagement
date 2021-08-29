@@ -6,6 +6,8 @@ import 'package:timemanagment/Controller/CommonController/common_controller.dart
 import 'package:timemanagment/Controller/HomeScreenController/HomeScreenController.dart';
 import 'package:timemanagment/Controller/LogOutController/logout_controller.dart';
 import 'package:timemanagment/Controller/user_controller.dart';
+import 'package:timemanagment/Services/mydb.dart';
+import 'package:timemanagment/Views/MainLogSheet/Widget/myDrawer.dart';
 import 'package:timemanagment/Views/Userprofile/user-file.dart';
 import 'package:timemanagment/constans/Colors.dart';
 
@@ -16,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key key}) : super(key: key);
 
   final GlobalKey<FormState> _myKey = GlobalKey<FormState>();
-  final logoutController = Get.put(LogOutController());
+
   final userController = Get.put(UserController());
   final commonController = Get.put(CommonController());
   final homeController = Get.put(HomeScreenController());
@@ -26,34 +28,32 @@ class HomeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     final homeController = Get.put(HomeScreenController());
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: CustomColors.myBlue,
-                ),
-                child: Text('User name')),
-            ListTile(
-              leading: Icon(Icons.person_pin),
-              title: const Text('User profile'),
-              onTap: () {
-                Get.to(Userprofile());
-              },
-            ),
 
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: const Text('LogOut'),
-              onTap: () {
-                logoutController.signOut();
-              },
-            ),
-          ],
-        ),
-      ),
+
+      // GetX<UserController>(
+      //   init: Get.put<UserController>(UserController()),
+      //   builder: (UserController userController) {
+      //     if (userController != null && userController.user != null) {
+      //       return Container(
+      //         height: size.height / 1.2,
+      //         child: ListView.builder(
+      //             shrinkWrap: true,
+      //             scrollDirection: Axis.vertical,
+      //             itemCount: 1,
+      //             itemBuilder: (context, index) {
+      //               return MyDrawer(userModel: userController.user,);
+      //             }),
+      //       );
+      //     } else {
+      //       return Text(
+      //         'Loading...',
+      //         style: TextStyle(fontSize: 20),
+      //       );
+      //     }
+      //   },
+      // ),
       appBar: AppBar(
+
         iconTheme: IconThemeData(color: CustomColors.myBlue),
         backgroundColor: CustomColors.white,
         elevation: 2.0,

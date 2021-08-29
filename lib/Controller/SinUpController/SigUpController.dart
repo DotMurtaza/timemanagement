@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,13 +7,13 @@ import 'package:get/get.dart';
 import 'package:timemanagment/Controller/user_controller.dart';
 import 'package:timemanagment/Models/user_model.dart';
 import 'package:timemanagment/Services/mydb.dart';
-import 'package:timemanagment/Views/LoginScreen/LoginScreen.dart';
 
 class SignUpController extends GetxController {
   TextEditingController username = TextEditingController();
   TextEditingController emailSignUp = TextEditingController();
   TextEditingController phoneSignUp = TextEditingController();
   TextEditingController passwordSignUp = TextEditingController();
+  File userImage;
   final auth = FirebaseAuth.instance;
 
   String validateEmail(String value) {
@@ -56,12 +58,17 @@ class SignUpController extends GetxController {
 
   void onSignUp(_formkey) {
     final isvalid = _formkey.currentState.validate();
+    if(userImage==null){
+      Get.snackbar('Error', 'We could found the image');
+      return;
+    }
     if (!isvalid) {
+      Get.snackbar('Error', 'Form is incomplete');
       return;
     } else {
       signUp(emailSignUp.text, passwordSignUp.text, username.text,
           phoneSignUp.text);
-    Get.back();
+   // Get.back();
     }
     _formkey.currentState.save;
   }
@@ -84,7 +91,8 @@ class SignUpController extends GetxController {
       Get.back();
       Get.snackbar('Success', 'Account created Successfully');
     } catch (e) {
-      Get.snackbar('Erorr', e.message.toString());
+      print(e);
+     // Get.snackbar('Erorr', e.toString());
     }
   }
 }

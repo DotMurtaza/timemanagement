@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:timemanagment/Controller/user_controller.dart';
 import 'package:timemanagment/Services/mydb.dart';
 import 'package:timemanagment/Views/MainLogSheet/HomeScreen.dart';
+import 'package:timemanagment/Views/welcomScreen/welcome_screen.dart';
 
 class SignInController extends GetxController {
   TextEditingController emailSignIn = TextEditingController();
@@ -49,7 +50,7 @@ class SignInController extends GetxController {
           email: email, password: password);
       Get.put<UserController>(UserController()).user = await MyDatabase()
           .getUser(_authresult.user.uid)
-          .then((value) => Get.to(HomeScreen()));
+          .then((value) => Get.to(WelcomeScreen()));
 
       Get.snackbar('Success', 'Login Success Fully');
     } catch (e) {

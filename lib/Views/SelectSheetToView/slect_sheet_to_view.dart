@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timemanagment/Views/DetailCardScreen/detail_card_screen.dart';
 import 'package:timemanagment/Views/DetailInTable/tabel_main_screen.dart';
-import 'package:timemanagment/Views/MainLogSheet/HomeScreen.dart';
+import 'package:timemanagment/Views/welcomScreen/welcome_screen.dart';
+import 'package:timemanagment/constans/Colors.dart';
 
 class SelectSheetToView extends StatelessWidget {
   const SelectSheetToView({Key key}) : super(key: key);
@@ -10,6 +11,18 @@ class SelectSheetToView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: CustomColors.myBlue),
+        backgroundColor: CustomColors.white,
+        elevation: 2.0,
+        shape: ContinuousRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(60))),
+        title: Text(
+          'Click to view',
+          style: TextStyle(color: CustomColors.myBlue, fontSize: 25),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,9 +47,10 @@ class SelectSheetToView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(40),
                   ))),
                   onPressed: () {
-                    Get.to(DetailCardScreen());
+                    Get.to(TableMianScreen());
                   },
-                  child: Text('View Data in card')),
+                  child: Text('View Data in Sheet',
+                      style: TextStyle(fontSize: 18))),
             ),
             SizedBox(
               height: 25,
@@ -61,9 +75,10 @@ class SelectSheetToView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(40),
                   ))),
                   onPressed: () {
-                    Get.to(TableMianScreen());
+                    Get.to(DetailCardScreen());
                   },
-                  child: Text('View Data in sheet')),
+                  child: Text('View Data in card',
+                      style: TextStyle(fontSize: 18))),
             ),
             SizedBox(
               height: 25,
@@ -85,12 +100,15 @@ class SelectSheetToView extends StatelessWidget {
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
-                          ))),
+                    borderRadius: BorderRadius.circular(40),
+                  ))),
                   onPressed: () {
-                    Get.offAll(HomeScreen());
+                    Get.offAll(WelcomeScreen());
                   },
-                  child: Text('Add a new Saponification Sheet')),
+                  child: Text(
+                    'Return to MainScreen',
+                    style: TextStyle(fontSize: 18),
+                  )),
             ),
           ],
         ),

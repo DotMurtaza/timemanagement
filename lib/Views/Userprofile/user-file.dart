@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timemanagment/Controller/auth_controller.dart';
 import 'package:timemanagment/Controller/user_controller.dart';
+import 'package:timemanagment/Views/Userprofile/signle-user.dart';
 import 'package:timemanagment/constans/Colors.dart';
 class Userprofile extends GetWidget<AuthController> {
   const Userprofile({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -35,7 +37,7 @@ class Userprofile extends GetWidget<AuthController> {
               )),
         ),
         backgroundColor: CustomColors.white,
-        elevation: 10.0,
+        elevation: 5.0,
         shape: ContinuousRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(60))),
         title: Text('User profile', style: TextStyle(color: CustomColors.myBlue, fontSize: 25),),
@@ -47,24 +49,30 @@ class Userprofile extends GetWidget<AuthController> {
           child: Column(
 
             children: [
-            GetX<UserController>(builder: (_){
-              return Text(
-                'User name : ${_.user.id}',
-                style: TextStyle(color: CustomColors.myBlue, fontSize: 25),
-              );
-            },),
-              GetX<UserController>(builder: (_){
-                return Text(
-                  'Email : ${_.user.email}',
-                  style: TextStyle(color: CustomColors.myBlue, fontSize: 25),
-                );
-              },),
-              GetX<UserController>(builder: (_){
-                return Text(
-                  'Phone # : ${_.user.phoneNo}',
-                  style: TextStyle(color: CustomColors.myBlue, fontSize: 25),
-                );
-              },),
+              GetX<UserController>(
+                init: Get.put<UserController>(UserController()),
+                builder: (UserController userController) {
+                  if (userController != null && userController.user != null) {
+                    return Container(
+                      height: size.height / 1.2,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: 1,
+                          itemBuilder: (context, index) {
+                            return SingleUser(
+                              userModel: userController.user,
+                            );
+                          }),
+                    );
+                  } else {
+                    return Text(
+                      'Loading...',
+                      style: TextStyle(fontSize: 20),
+                    );
+                  }
+                },
+              ),
           ],),
         ),
       ),
