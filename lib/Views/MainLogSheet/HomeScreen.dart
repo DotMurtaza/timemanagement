@@ -36,6 +36,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Text('User name')),
             ListTile(
+              leading: Icon(Icons.person_pin),
               title: const Text('User profile'),
               onTap: () {
                 Get.to(Userprofile());
