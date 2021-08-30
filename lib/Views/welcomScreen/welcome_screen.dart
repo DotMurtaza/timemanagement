@@ -142,7 +142,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         child: const Text('SHARE'),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.defaultDialog(
+                              title: 'Analysis',
+                              middleText: 'This field yet to be add soon! ',
+                              textConfirm: 'Okay',
+                              onConfirm: (){Get.back();},
+                              confirmTextColor: Colors.amberAccent,
+                              textCancel: 'Cancel');
+                        },
                         child: const Text('View Analysis'),
                       ),
                     ],

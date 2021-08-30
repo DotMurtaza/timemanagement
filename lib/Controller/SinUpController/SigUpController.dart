@@ -83,12 +83,12 @@ class SignUpController extends GetxController {
           email: email,
           password: password,
           phoneNo: phoneNo);
-
+      Get.back();
       if (await MyDatabase().createUser(userModel)) {
         Get.find<UserController>().user = userModel;
 
       };
-      Get.back();
+
       Get.snackbar('Success', 'Account created Successfully');
     } catch (e) {
       print(e);

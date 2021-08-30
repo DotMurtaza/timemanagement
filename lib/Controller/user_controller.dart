@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timemanagment/Models/user_model.dart';
 
@@ -8,7 +7,7 @@ class UserController extends GetxController{
   Rx<UserModel> usermodel=UserModel().obs;
   UserModel get user=>usermodel.value;
   set user(UserModel value)=>this.usermodel.value=value;
-  final firestore=FirebaseFirestore.instance;
+ // final firestore=FirebaseFirestore.instance;
   // void clear(){
   //   usermodel.value=UserModel();
   // }
